@@ -21,7 +21,7 @@ class ConsoleController:
     def print_players(self):
         for player in self.controller.players:
             message = f"Name: {player.name}"
-            if player == self.controller.current_player:
+            if player == self.controller.get_current_player():
                 message += ' *'
             print(message)
 
@@ -39,7 +39,7 @@ class ConsoleController:
         return res
 
     def ask_input(self):
-        print(f"{self.controller.current_player.name}'s turn")
+        print(f"{self.controller.get_current_player().name}'s turn")
         x = int(input('X :'))
         y = int(input('Y :'))
         return (x, y)
