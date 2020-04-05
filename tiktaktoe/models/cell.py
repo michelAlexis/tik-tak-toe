@@ -1,5 +1,7 @@
+from .player import Player
+
 class Cell:
-    EMPTY = 'E'
+    EMPTY = ' '
 
     def __init__(self, value = EMPTY):
         self.value = value
@@ -9,3 +11,6 @@ class Cell:
 
     def __str__(self) -> str:
         return str(self.value)
+
+    def assign(self, player: Player):
+        self.value = player.symbol

@@ -1,18 +1,33 @@
+from random import randint
+
 from tiktaktoe.models.board import Board
+from tiktaktoe.models.player import Player
 
 class TiktaktoeController:
     def __init__(self):
         self.board = Board()
+        self.players = []
+        self.current_player = None
 
-    def get_serialized_board(self) -> str:
-        res = ''
+    def start_new_game(self):
+        if not self.players:
+            raise Exception('No player to play')
+        self.board = Board()
+        self._assign_random_player()
 
-        for row in self.board.get_rows():
-            for x, cell in enumerate(row):
-                res += str(cell)
-                if x != self.board.width - 1:
-                    res += '|'
+    def _assign_random_player(self):
+        i = randint(0, len(self.players)-1)
+        self.current_player = self.players[i]
 
-            res += '\n'
+    def get_width(self) -> int:
+        return self.board.width
 
-        return res
+    def get_height(self) -> int:
+        return self.board.height
+
+    def add_player(self, name: str, symbol: str):
+        p = Player(name, symbol)
+        self.players.append(p)
+
+    def play(self, x: int, y: int):
+        self.board.assign(x, y, self.current_player)

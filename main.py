@@ -1,4 +1,4 @@
-from tiktaktoe.controller.tiktaktoe_controller import TiktaktoeController as Controller
+from tiktaktoe.controller.console_controller import ConsoleController as Controller
 
 c = Controller()
-print(c.get_serialized_board())
+c.start()
