@@ -13,6 +13,16 @@ class ArrayUtilsTest(unittest.TestCase):
         res = star_equals(arr, (0, 0), 2)
         self.assertListEqual(res, [(0,0), (0,1)])
 
+    def test_empty(self):
+        arr = [
+            [0,0,0],
+            [0,1,0],
+            [0,1,0]
+        ]
+
+        res = star_equals(arr, (1, 1), 3)
+        self.assertEquals(len(res), 0)
+
     def test_single_result_star(self):
         arr = [
             [0,0,0],
